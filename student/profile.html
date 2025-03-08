@@ -38,29 +38,30 @@
                     <div class="profile-header">
                         <div class="profile-avatar">
                             <img src="../assets/default-avatar.png" alt="Student Avatar">
-                            <button class="change-avatar-btn"><i class="fas fa-camera"></i></button>
+                            <button class="change-avatar-btn" onclick="changeAvatar()"><i class="fas fa-camera"></i></button>
                         </div>
                         <div class="profile-name">
-                            <h4>John Doe</h4>
+                            <h4 contenteditable="true" id="studentName">John Doe</h4>
                             <p>Student ID: ST2024001</p>
                         </div>
+                        <button class="edit-btn" onclick="toggleEdit()"><i class="fas fa-edit"></i> Edit Profile</button>
                     </div>
-                    <div class="profile-details">
+                    <div class="profile-details" id="personalInfo">
                         <div class="detail-item">
                             <span class="label">Date of Birth:</span>
-                            <span class="value">January 15, 2005</span>
+                            <span class="value" contenteditable="false" data-field="dob">January 15, 2005</span>
                         </div>
                         <div class="detail-item">
                             <span class="label">Gender:</span>
-                            <span class="value">Male</span>
+                            <span class="value" contenteditable="false" data-field="gender">Male</span>
                         </div>
                         <div class="detail-item">
                             <span class="label">Class:</span>
-                            <span class="value">Grade 10-A</span>
+                            <span class="value" contenteditable="false" data-field="class">Grade 10-A</span>
                         </div>
                         <div class="detail-item">
                             <span class="label">Roll Number:</span>
-                            <span class="value">101</span>
+                            <span class="value" contenteditable="false" data-field="rollNumber">101</span>
                         </div>
                     </div>
                 </div>
@@ -71,15 +72,15 @@
                 <div class="profile-card">
                     <div class="detail-item">
                         <span class="label">Email:</span>
-                        <span class="value">john.doe@student.elite.edu</span>
+                        <span class="value" contenteditable="false" data-field="email">john.doe@student.elite.edu</span>
                     </div>
                     <div class="detail-item">
                         <span class="label">Phone:</span>
-                        <span class="value">+1 234 567 8900</span>
+                        <span class="value" contenteditable="false" data-field="phone">+1 234 567 8900</span>
                     </div>
                     <div class="detail-item">
                         <span class="label">Address:</span>
-                        <span class="value">123 Student Street, Education City, ST 12345</span>
+                        <span class="value" contenteditable="false" data-field="address">123 Student Street, Education City, ST 12345</span>
                     </div>
                 </div>
             </section>
@@ -89,45 +90,23 @@
                 <div class="profile-card">
                     <div class="detail-item">
                         <span class="label">Parent/Guardian Name:</span>
-                        <span class="value">Robert Doe</span>
+                        <span class="value" contenteditable="false" data-field="guardianName">Robert Doe</span>
                     </div>
                     <div class="detail-item">
                         <span class="label">Relationship:</span>
-                        <span class="value">Father</span>
+                        <span class="value" contenteditable="false" data-field="relationship">Father</span>
                     </div>
                     <div class="detail-item">
                         <span class="label">Phone:</span>
-                        <span class="value">+1 234 567 8901</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="label">Email:</span>
-                        <span class="value">robert.doe@email.com</span>
-                    </div>
-                </div>
-            </section>
-
-            <section class="profile-section medical-info">
-                <h3><i class="fas fa-notes-medical"></i> Medical Information</h3>
-                <div class="profile-card">
-                    <div class="detail-item">
-                        <span class="label">Blood Group:</span>
-                        <span class="value">A+</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="label">Allergies:</span>
-                        <span class="value">None</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="label">Medical Conditions:</span>
-                        <span class="value">None</span>
+                        <span class="value" contenteditable="false" data-field="emergencyPhone">+1 234 567 8901</span>
                     </div>
                 </div>
             </section>
         </div>
 
         <div class="profile-actions">
-            <button class="edit-profile-btn"><i class="fas fa-edit"></i> Edit Profile</button>
-            <button class="change-password-btn"><i class="fas fa-key"></i> Change Password</button>
+            <button class="save-btn" onclick="saveChanges()" style="display: none;"><i class="fas fa-save"></i> Save Changes</button>
+            <button class="cancel-btn" onclick="cancelChanges()" style="display: none;"><i class="fas fa-times"></i> Cancel</button>
         </div>
     </main>
 
@@ -136,6 +115,65 @@
     </footer>
 
     <script src="../assets/script.js"></script>
-    <script src="profile.js"></script>
+    <script>
+        let originalValues = {};
+
+        function toggleEdit() {
+            const values = document.querySelectorAll('.value');
+            const saveBtn = document.querySelector('.save-btn');
+            const cancelBtn = document.querySelector('.cancel-btn');
+            const isEditing = values[0].contentEditable === 'true';
+
+            if (!isEditing) {
+                // Store original values before editing
+                values.forEach(value => {
+                    const field = value.dataset.field;
+                    originalValues[field] = value.textContent;
+                    value.contentEditable = true;
+                });
+                saveBtn.style.display = 'inline-block';
+                cancelBtn.style.display = 'inline-block';
+            }
+        }
+
+        function saveChanges() {
+            const values = document.querySelectorAll('.value');
+            values.forEach(value => {
+                value.contentEditable = false;
+            });
+            document.querySelector('.save-btn').style.display = 'none';
+            document.querySelector('.cancel-btn').style.display = 'none';
+            // Here you would typically send the updated data to a server
+            alert('Changes saved successfully!');
+        }
+
+        function cancelChanges() {
+            const values = document.querySelectorAll('.value');
+            values.forEach(value => {
+                const field = value.dataset.field;
+                value.textContent = originalValues[field];
+                value.contentEditable = false;
+            });
+            document.querySelector('.save-btn').style.display = 'none';
+            document.querySelector('.cancel-btn').style.display = 'none';
+        }
+
+        function changeAvatar() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.querySelector('.profile-avatar img').src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        }
+    </script>
 </body>
 </html>
