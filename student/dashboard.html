@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - School Management System</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-container">
+                <img src="../assets/school-logo.png" alt="School Logo" class="logo">
+                <h1>Team Elite</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="dashboard.html" class="active"><i class="fas fa-user-graduate"></i> Student</a></li>
+                <li><a href="profile.html"><i class="fas fa-user-circle"></i> Profile</a></li>
+                <li><a href="attendance.html"><i class="fas fa-calendar-check"></i> Attendance</a></li>
+                <li><a href="academics.html"><i class="fas fa-graduation-cap"></i> Academics</a></li>
+                <li><a href="timetable.html"><i class="fas fa-clock"></i> Timetable</a></li>
+                <li><a href="fees.html"><i class="fas fa-money-bill"></i> Fees</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+        <h2 class="dashboard-title">Student Dashboard</h2>
+        
+        <div class="quick-stats">
+            <div class="stat-card">
+                <i class="fas fa-calendar-check"></i>
+                <h3>Attendance</h3>
+                <p class="stat-value">85%</p>
+                <p class="stat-label">This Month</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Performance</h3>
+                <p class="stat-value">A</p>
+                <p class="stat-label">Current Grade</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-money-check"></i>
+                <h3>Fees</h3>
+                <p class="stat-value">Paid</p>
+                <p class="stat-label">Current Term</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-tasks"></i>
+                <h3>Assignments</h3>
+                <p class="stat-value">5</p>
+                <p class="stat-label">Pending</p>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <section class="dashboard-section upcoming-classes">
+                <h3><i class="fas fa-clock"></i> Today's Classes</h3>
+                <div class="class-list">
+                    <div class="class-item">
+                        <span class="time">09:00 AM</span>
+                        <span class="subject">Mathematics</span>
+                        <span class="teacher">Mr. Johnson</span>
+                    </div>
+                    <div class="class-item">
+                        <span class="time">10:30 AM</span>
+                        <span class="subject">Science</span>
+                        <span class="teacher">Mrs. Smith</span>
+                    </div>
+                    <div class="class-item">
+                        <span class="time">12:00 PM</span>
+                        <span class="subject">English</span>
+                        <span class="teacher">Ms. Davis</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dashboard-section announcements">
+                <h3><i class="fas fa-bullhorn"></i> Announcements</h3>
+                <div class="announcement-list">
+                    <div class="announcement-item">
+                        <h4>Mid-Term Exams Schedule</h4>
+                        <p>Mid-term examinations will begin from next Monday. Check the detailed schedule in the academics section.</p>
+                        <span class="date">2 days ago</span>
+                    </div>
+                    <div class="announcement-item">
+                        <h4>Sports Day</h4>
+                        <p>Annual sports day will be held on 15th of next month. Register for events in the sports department.</p>
+                        <span class="date">5 days ago</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dashboard-section assignments">
+                <h3><i class="fas fa-book"></i> Recent Assignments</h3>
+                <div class="assignment-list">
+                    <div class="assignment-item">
+                        <h4>Mathematics - Algebra</h4>
+                        <p>Complete exercises 5.1 to 5.3</p>
+                        <span class="due-date">Due: Tomorrow</span>
+                    </div>
+                    <div class="assignment-item">
+                        <h4>Science - Chemistry</h4>
+                        <p>Lab report on acid-base reactions</p>
+                        <span class="due-date">Due: Next Week</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dashboard-section performance">
+                <h3><i class="fas fa-chart-bar"></i> Performance Overview</h3>
+                <div class="performance-chart">
+                    <!-- Placeholder for charts -->
+                    <p>Your performance visualization will appear here</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Team Elite. All rights reserved.</p>
+    </footer>
+
+    <script src="../assets/script.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
